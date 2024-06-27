@@ -37,7 +37,7 @@ const NavBar: React.FC = () => {
           {user ? (
             <>
               <Navbar.Text className="sign-in-name me-2">
-                Signed in as: <a href="#login">{user.username}</a>
+                Signed in: <a href="#login">{user.username}</a>
               </Navbar.Text>
               <Link to="/fav" className="btn btn-outline-primary me-2">Favorites</Link>
               <Link to="/addmovie" className="btn btn-outline-secondary me-2">Add Movie</Link>
