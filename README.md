@@ -46,8 +46,6 @@ none
 
 ## Bugs and fixes
 
-### bug 1-sign up
-
 
 ### Solved bugs
 

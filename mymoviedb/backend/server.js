@@ -12,6 +12,7 @@ global.user = null;
 app.use(cors());
 app.use(express.json());
 
+
 // Routes
 app.use('/api/movies', movieRoutes);
 app.use('/api/keys', keyRoutes);
