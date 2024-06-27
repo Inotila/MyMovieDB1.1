@@ -49,19 +49,18 @@ none
 
 ### Solved bugs
 
-
 ## Unfixed bugs
 
 None
 
 ## Validator testing
 
-
+None
 
 ## Deployment
 
 ### Local Deploymentc
-
+npm start to run front and backend
 
 ## Credits/Reference 
 This work is the original work of Inotila Nghaamwa, however the following resources were used to supplement:
