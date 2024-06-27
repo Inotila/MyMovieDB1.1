@@ -40,33 +40,33 @@ const Register: React.FC = () => {
             <div className="container mt-4">
                 <h1>Register</h1>
                 <InputGroup className="mb-3">
-                    <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
+                    <InputGroup.Text id="username">Username</InputGroup.Text>
                     <Form.Control
                         placeholder="Username"
                         aria-label="Username"
-                        aria-describedby="basic-addon1"
+                        aria-describedby="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </InputGroup>
                 <InputGroup className="mb-3">
-                    <InputGroup.Text id="basic-addon2">Password</InputGroup.Text>
+                    <InputGroup.Text id="password">Password</InputGroup.Text>
                     <Form.Control
                         placeholder="Password"
                         aria-label="Password"
                         type="password"
-                        aria-describedby="basic-addon2"
+                        aria-describedby="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </InputGroup>
                 <InputGroup className="mb-3">
-                    <InputGroup.Text id="basic-addon3">Confirm Password</InputGroup.Text>
+                    <InputGroup.Text id="confirm-password">Confirm Password</InputGroup.Text>
                     <Form.Control
                         placeholder="Confirm Password"
                         aria-label="Confirm Password"
                         type="password"
-                        aria-describedby="basic-addon3"
+                        aria-describedby="confirm-password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />

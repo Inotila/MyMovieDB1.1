@@ -30,22 +30,22 @@ const Login: React.FC = () => {
       <div className="container mt-4">
         <h1>Login</h1>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
+          <InputGroup.Text id="username">Username</InputGroup.Text>
           <Form.Control
             placeholder="Username"
             aria-label="Username"
-            aria-describedby="basic-addon1"
+            aria-describedby="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon2">Password</InputGroup.Text>
+          <InputGroup.Text id="password">Password</InputGroup.Text>
           <Form.Control
             type="password"
             placeholder="Password"
             aria-label="Password"
-            aria-describedby="basic-addon2"
+            aria-describedby="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

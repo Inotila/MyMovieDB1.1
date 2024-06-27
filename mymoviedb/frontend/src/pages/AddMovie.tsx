@@ -33,31 +33,31 @@ const AddMovie: React.FC = () => {
       <div className="container mt-4">
         <h1>Add New Movie</h1>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
+          <InputGroup.Text id="Title">Title</InputGroup.Text>
           <Form.Control
             placeholder="Title"
             aria-label="Title"
-            aria-describedby="basic-addon1"
+            aria-describedby="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon2">Poster URL</InputGroup.Text>
+          <InputGroup.Text id="poster-URL">Poster URL</InputGroup.Text>
           <Form.Control
             placeholder="Poster URL"
             aria-label="Poster"
-            aria-describedby="basic-addon2"
+            aria-describedby="poster-URL"
             value={poster}
             onChange={(e) => setPoster(e.target.value)}
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon3">Trailer Link</InputGroup.Text>
+          <InputGroup.Text id="trailer-link">Trailer Link</InputGroup.Text>
           <Form.Control
             placeholder="Trailer Link"
             aria-label="Trailer Link"
-            aria-describedby="basic-addon3"
+            aria-describedby="trailer-link"
             value={trailerLink}
             onChange={(e) => setTrailerLink(e.target.value)}
           />
