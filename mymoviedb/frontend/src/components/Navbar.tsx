@@ -40,7 +40,7 @@ const NavBar: React.FC = () => {
                 Signed in: <a href="#login">{user.username}</a>
               </Navbar.Text>
               <Link to="/fav" className="btn btn-outline-primary me-2">Favorites</Link>
-              <Link to="/addmovie" className="btn btn-outline-secondary me-2">Add Movie</Link>
+              <Link to="/addmovie" className="btn btn-outline-info me-2">Add Movie</Link>
               <Button variant="outline-danger" onClick={handleLogout}>Logout</Button>
             </>
           ) : (
