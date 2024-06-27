@@ -1,15 +1,7 @@
 import React from 'react';
 import { toggleFavorite, deleteMovie } from '../services/myMovieService';
 import { useLocation } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-interface Movie {
-  imdbid: string;
-  title: string;
-  poster: string;
-  trailer_link: string;
-  is_favorite: boolean;
-}
+import { Movie } from './MyMovieList';
 
 interface Props {
   movie: Movie;
@@ -39,7 +31,7 @@ const MyMovieItem: React.FC<Props> = ({ movie, apiKey }) => {
               {movie.is_favorite ? 'Unfavorite' : 'Favorite'}
             </button>
             {movie.is_favorite && location.pathname === '/fav' ? null : <button className="btn btn-danger mb-2" onClick={handleDelete}>Delete</button>}
-            <a className="btn btn-info mb-2 mx-2" href={movie.trailer_link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
+            <a className="btn btn-warning mb-2 mx-2" href={movie.trailer_link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
           </div>
         </div>
       </div>

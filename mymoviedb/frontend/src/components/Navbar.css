@@ -5,3 +5,11 @@
 .custom-navbar .nav-link {
     color: white !important; 
 }
+
+.sign-in-name {
+    color: white !important; 
+}
+
+.sign-in-name > a {
+    color: white !important; 
+}

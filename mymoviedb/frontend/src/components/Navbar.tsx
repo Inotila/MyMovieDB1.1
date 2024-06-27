@@ -30,13 +30,13 @@ const NavBar: React.FC = () => {
 
   return (
     <Navbar className="custom-navbar" expand="lg">
-      <Navbar.Brand className="mx-2" href="/">Movie DB</Navbar.Brand>
+      <Navbar.Brand className="mx-2" href="/">My Movie DB</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto mx-2">
           {user ? (
             <>
-              <Navbar.Text className="mr-2">
+              <Navbar.Text className="sign-in-name me-2">
                 Signed in as: <a href="#login">{user.username}</a>
               </Navbar.Text>
               <Link to="/fav" className="btn btn-outline-primary me-2">Favorites</Link>

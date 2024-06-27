@@ -1,48 +1,148 @@
-import axios from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
+import { Movie } from '../components/MyMovieList';
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api';
+const API_BASE_URL = 'http://localhost:8080/api';
 
-export interface Movie {
-  imdbid: string;
-  title: string;
-  poster: string;
-  trailer_link: string;
-  is_favorite: boolean;
+// Define interfaces for API responses
+interface ApiKeyResponse {
+    success: boolean;
+    data: string;
 }
 
+
+interface MovieResponse {
+    success: boolean;
+    data: Movie[];
+}
+
+interface SuccessResponse {
+    success: boolean;
+}
+
+// Function to fetch API key
 export const getApiKey = async (): Promise<string> => {
-  const token = localStorage.getItem('token');
-  if (!token) throw new Error('No token found');
-  return token;
+    try {
+        const response: AxiosResponse<ApiKeyResponse> = await axios.get(`${API_BASE_URL}/keys`);
+        if (response.data.success) {
+            return response.data.data;
+        } else {
+            throw new Error('Failed to retrieve API key');
+        }
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Failed to retrieve API key: ' + error.message);
+        } else {
+            throw new Error('Failed to retrieve API key');
+        }
+    }
 };
 
-export const getMovies = async (apiKey: string): Promise<Movie[]> => {
-  const response = await axios.get(`${API_BASE_URL}/movies/`, {
-    headers: { Authorization: `Bearer ${apiKey}` }
-  });
-  return response.data;
+// Function to fetch movies using the API key
+export const getMovies = async (key: string): Promise<Movie[]> => {
+    try {
+        const response: AxiosResponse<MovieResponse> = await axios.get(`${API_BASE_URL}/movies?key=${key}`);
+        if (response.data.success) {
+            return response.data.data;
+        } else {
+            throw new Error('Failed to retrieve movies');
+        }
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Failed to retrieve movies: ' + error.message);
+        } else {
+            throw new Error('Failed to retrieve movies');
+        }
+    }
 };
 
-export const toggleFavorite = async (apiKey: string, imdbid: string): Promise<void> => {
-  await axios.put(`${API_BASE_URL}/movies/${imdbid}/favorite/`, {}, {
-    headers: { Authorization: `Bearer ${apiKey}` }
-  });
+function numToString(number: number): string{
+return number.toString( )
+}
+
+// Function to toggle favorite status of a movie
+export const toggleFavorite = async (key: string, imdbid: string): Promise<SuccessResponse> => {
+    try {
+        const response: AxiosResponse<SuccessResponse> = await axios.put(`${API_BASE_URL}/movies/${imdbid}?key=${key}`);
+        return response.data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Failed to toggle favorite: ' + error.message);
+        } else {
+            throw new Error('Failed to toggle favorite');
+        }
+    }
 };
 
-export const deleteMovie = async (apiKey: string, imdbid: string): Promise<void> => {
-  await axios.delete(`${API_BASE_URL}/movies/${imdbid}/`, {
-    headers: { Authorization: `Bearer ${apiKey}` }
-  });
+// Function to delete a movie
+export const deleteMovie = async (key: string, imdbid: string): Promise<SuccessResponse> => {
+    try {
+        const response: AxiosResponse<SuccessResponse> = await axios.delete(`${API_BASE_URL}/movies/${imdbid}?key=${key}`);
+        return response.data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Failed to delete movie: ' + error.message);
+        } else {
+            throw new Error('Failed to delete movie');
+        }
+    }
 };
 
-export const addMovie = async (movie: Partial<Movie>, apiKey: string): Promise<{ success: boolean }> => {
-  const response = await axios.post(`${API_BASE_URL}/movies/`, movie, {
-    headers: { Authorization: `Bearer ${apiKey}` }
-  });
-  return response.data;
+// Function to login user
+export const login = async (user: { username: string; password: string }): Promise<any> => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/login`, user);
+        if (response.data.success) {
+            sessionStorage.setItem('user', JSON.stringify(response.data.user));
+        }
+        return response.data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Failed to login: ' + error.message);
+        } else {
+            throw new Error('Failed to login');
+        }
+    }
 };
 
-export const login = async (username: string, password: string): Promise<{ success: boolean, token: string }> => {
-  const response = await axios.post(`${API_BASE_URL}/token/`, { username, password });
-  return response.data;
+// Function to logout user
+export const logout = async (): Promise<SuccessResponse> => {
+    try {
+        const response: AxiosResponse<SuccessResponse> = await axios.post(`${API_BASE_URL}/auth/logout`);
+        return response.data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Failed to logout: ' + error.message);
+        } else {
+            throw new Error('Failed to logout');
+        }
+    }
+};
+
+// Function to register new user
+export const register = async (user: { username: string; password: string }): Promise<any> => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/register`, user);
+        sessionStorage.setItem('user', JSON.stringify(response.data.user));
+        return response.data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Registration failed: ' + error.message);
+        } else {
+            throw new Error('Registration failed');
+        }
+    }
+};
+
+// Function to add a new movie
+export const addMovie = async (movie: Movie, key: string): Promise<SuccessResponse> => {
+    try {
+        const response: AxiosResponse<SuccessResponse> = await axios.post(`${API_BASE_URL}/movies?key=${key}`, movie);
+        return response.data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error('Failed to add movie: ' + error.message);
+        } else {
+            throw new Error('Failed to add movie');
+        }
+    }
 };

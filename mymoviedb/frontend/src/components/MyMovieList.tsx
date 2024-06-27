@@ -1,7 +1,7 @@
 import React from 'react';
 import MyMovieItem from './MyMovieItem';
 
-interface Movie {
+export interface Movie {
   imdbid: string;
   title: string;
   poster: string;

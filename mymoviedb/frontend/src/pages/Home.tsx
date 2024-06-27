@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getApiKey, getMovies } from '../services/myMovieService';
-import MyMovieList from '../components/MyMovieList';
-import NavigationBar from '../components/Navbar';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import MyMovieList, { Movie } from '../components/MyMovieList';
+import NavBar from '../components/Navbar';
+
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
     const fetchData = async () => {
       const key = await getApiKey();
       setApiKey(key);
-      const movieList = await getMovies(key);
+      const movieList:Movie[] = await getMovies(key);
       setMovies(movieList);
     };
     fetchData();
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <NavigationBar />
+      <NavBar />
       <div className="container mt-4">
         <h1 className="text-center mb-4">Movie DB</h1>
         <h2 className="text-center">movie list</h2>
