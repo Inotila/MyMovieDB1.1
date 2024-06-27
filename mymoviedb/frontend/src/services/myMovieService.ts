@@ -3,7 +3,6 @@ import { Movie } from '../components/MyMovieList';
 
 const API_BASE_URL = 'http://localhost:8080/api';
 
-// Define interfaces for API responses
 interface ApiKeyResponse {
     success: boolean;
     data: string;

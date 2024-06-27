@@ -22,7 +22,7 @@ const Home: React.FC = () => {
     <div>
       <NavBar />
       <div className="container mt-4">
-        <h1 className="text-center mb-4">Movie DB</h1>
+        <h1 className="text-center mb-4">My Movie DB</h1>
         <h2 className="text-center">movie list</h2>
         <MyMovieList movies={movies} apiKey={apiKey} />
       </div>
